@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <article class="mt-4 mb-4">
+            <div class="byline vcard ms-4">
+                <div class="author"><h4>{{authorDetails?.data?.author}} </h4></div> 
+                <div class="subHead">{{authorDetails?.data?.birthday}}</div>
+                <div class="subHead">{{authorDetails?.data?.birthPlace}}</div>
+            </div>
+            <div>
+                <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="editBook()" data-bs-target="#exampleModal">Add</button>
+            </div>
+    </article>
+    <div class="card-wrapper parent">
+
+        <mat-card class="example-card" *ngFor="let book of booksList; let i = index">
+          <mat-card-header>
+            
+          
+          </mat-card-header>
+          <img mat-card-image style="height:300px" src="{{book.imageUrl}}" alt="Angular Logo">
+          <mat-card-content>
+            
+            <mat-card-title><a href="{{book.purchaseLink}}" target="_blank">{{book.title}}</a></mat-card-title>
+            <mat-card-subtitle>
+              {{book.PublishDate}}
+            </mat-card-subtitle>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="editBook(i, book)" data-bs-target="#exampleModal">Edit</button>
+            <button mat-raised-button color="warn" (click)="deleteBook(book)">Delete</button>
+            <!-- <mat-icon color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="editBook(i, book)" data-bs-target="#exampleModal">edit</mat-icon>
+            <mat-icon color="warn" title="Delete Book">delete</mat-icon> -->
+          </mat-card-actions>
+    
+        </mat-card>
+      
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="booksForm">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Title</label>
+                  <input type="text" class="form-control" name="title" formControlName="title" placeholder="Enter title">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Publish Date</label>
+                    <input type="text" class="form-control" name="PublishDate" formControlName="PublishDate" placeholder="Enter publish date">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Purchase Link</label>
+                    <input type="text" class="form-control" name="purchaseLink" formControlName="purchaseLink" placeholder="Enter purchase link">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Image Url</label>
+                    <input type="text" class="form-control" name="imageUrl" formControlName="imageUrl" placeholder="Enter image url">
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveBook()" >Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
