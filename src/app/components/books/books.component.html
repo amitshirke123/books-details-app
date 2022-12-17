@@ -6,7 +6,7 @@
                 <div class="subHead">{{authorDetails?.data?.birthPlace}}</div>
             </div>
             <div>
-                <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="editBook()" data-bs-target="#exampleModal">Add</button>
+                <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="openModal()" data-bs-target="#exampleModal">Add</button>
             </div>
     </article>
     <div class="card-wrapper parent">
@@ -26,10 +26,8 @@
           </mat-card-content>
 
           <mat-card-actions align="end">
-            <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="editBook(i, book)" data-bs-target="#exampleModal">Edit</button>
+            <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="openModal(i, book)" data-bs-target="#exampleModal">Edit</button>
             <button mat-raised-button color="warn" (click)="deleteBook(book)">Delete</button>
-            <!-- <mat-icon color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="editBook(i, book)" data-bs-target="#exampleModal">edit</mat-icon>
-            <mat-icon color="warn" title="Delete Book">delete</mat-icon> -->
           </mat-card-actions>
     
         </mat-card>
