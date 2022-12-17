@@ -1,9 +1,9 @@
-<div class="container-fluid">
-    <article class="mt-4 mb-4">
+<div class="container">
+    <article class="mt-4 mb-4 me-5">
             <div class="byline vcard ms-4">
                 <div class="author"><h4>{{authorDetails?.data?.author}} </h4></div> 
-                <div class="subHead">{{authorDetails?.data?.birthday}}</div>
-                <div class="subHead">{{authorDetails?.data?.birthPlace}}</div>
+                <div class="sub-head">{{authorDetails?.data?.birthday}}</div>
+                <div class="sub-head">{{authorDetails?.data?.birthPlace}}</div>
             </div>
             <div>
                 <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="openModal()" data-bs-target="#exampleModal">Add</button>
