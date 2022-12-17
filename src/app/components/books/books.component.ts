@@ -18,11 +18,11 @@ export class BooksComponent implements OnInit {
   constructor(private bookService: BooksService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.bookService.getBooks()
-      .subscribe((response: any) => {
-        this.authorDetails = response;
-        this.booksList = response.data.books;
-      });
+      this.bookService.getBooks()
+        .subscribe((response: any) => {
+          this.authorDetails = response;
+          this.booksList = response.data.books;
+        });
 
       this.booksForm = this.fb.group({
         id: [''],
