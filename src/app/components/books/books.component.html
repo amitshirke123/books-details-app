@@ -1,12 +1,12 @@
 <div class="container">
-    <article class="mt-4 mb-4 me-5">
+    <article class="mt-4 mb-4 me-1-5">
             <div class="byline vcard ms-4">
                 <div class="author"><h4>{{authorDetails?.data?.author}} </h4></div> 
                 <div class="sub-head">{{authorDetails?.data?.birthday}}</div>
                 <div class="sub-head">{{authorDetails?.data?.birthPlace}}</div>
             </div>
             <div>
-                <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="openModal()" data-bs-target="#exampleModal">Add</button>
+                <button mat-raised-button color="primary" data-bs-toggle="modal" title="Add New Book" (click)="openModal()" data-bs-target="#exampleModal">Add</button>
             </div>
     </article>
     <div class="card-wrapper parent">
@@ -27,7 +27,7 @@
 
           <mat-card-actions align="end">
             <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="openModal(i, book)" data-bs-target="#exampleModal">Edit</button>
-            <button mat-raised-button color="warn" (click)="deleteBook(book)">Delete</button>
+            <button mat-raised-button color="warn" title="Delete Book" (click)="deleteBook(book)">Delete</button>
           </mat-card-actions>
     
         </mat-card>
