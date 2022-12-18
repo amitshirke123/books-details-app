@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BooksService } from 'src/app/shared/services/books/books.service';
+
+interface Book {
+  id: number,
+  title: string,
+  PublishDate: string,
+  purchaseLink: string,
+  imageUrl: string
+}
 
 @Component({
   selector: 'app-books',
@@ -14,6 +22,7 @@ export class BooksComponent implements OnInit {
 
   booksForm!: FormGroup;
   modalTitle: string = '';
+  selectedBook: Book | undefined;
 
   constructor(private bookService: BooksService, private fb: FormBuilder) { }
 
@@ -26,14 +35,14 @@ export class BooksComponent implements OnInit {
 
       this.booksForm = this.fb.group({
         id: [''],
-        title: [''],
-        PublishDate: [''],
-        purchaseLink: [''],
-        imageUrl: ['']
+        title: ['', Validators.required],
+        PublishDate: ['', Validators.required],
+        purchaseLink: ['', Validators.required],
+        imageUrl: ['', Validators.required]
       })
   }
 
-  openModal(index: number = -1, bookDetails: any = {}){
+  openAddEditModal(index: number = -1, bookDetails: any = {}){
     Object.keys(bookDetails).length > 0 ? this.modalTitle = 'Edit Book Details': this.modalTitle = 'Add New Book';
     this.booksForm.patchValue({
         id: index,
@@ -45,7 +54,7 @@ export class BooksComponent implements OnInit {
   }
 
   saveBook(){
-    if(this.booksForm.value.id != -1){
+    if(this.booksForm.value.id != -1 && this.booksForm.valid){
       this.booksList.map((val: any, index: number) => {
         if(index == this.booksForm.value.id){
           val.title = this.booksForm.value.title;
@@ -54,14 +63,18 @@ export class BooksComponent implements OnInit {
           val.imageUrl = this.booksForm.value.imageUrl;
         } 
       })
-    } else {
+    } else if(this.booksForm.valid) {
       this.booksList.push(this.booksForm.value);
     }
     
   }
 
-  deleteBook(book: any){
-    this.booksList.indexOf(book) > -1 ? this.booksList.splice(this.booksList.indexOf(book), 1): null;
+  openConfirmModal(book: Book){
+    this.selectedBook = book;
+  }
+
+  deleteBook(){
+    this.booksList.indexOf(this.selectedBook) > -1 ? this.booksList.splice(this.booksList.indexOf(this.selectedBook), 1): null;
   }
 
 }

@@ -6,7 +6,7 @@
                 <div class="sub-head">{{authorDetails?.data?.birthPlace}}</div>
             </div>
             <div>
-                <button mat-raised-button color="primary" data-bs-toggle="modal" title="Add New Book" (click)="openModal()" data-bs-target="#exampleModal">Add</button>
+                <button mat-raised-button color="primary" data-bs-toggle="modal" title="Add New Book" (click)="openAddEditModal()" data-bs-target="#addEditModal">Add</button>
             </div>
     </article>
     <div class="card-wrapper parent">
@@ -19,15 +19,15 @@
           <img mat-card-image style="height:300px" src="{{book.imageUrl}}" alt="Angular Logo">
           <mat-card-content>
             
-            <mat-card-title><a href="{{book.purchaseLink}}" target="_blank">{{book.title}}</a></mat-card-title>
+            <mat-card-title><a href="{{book.purchaseLink}}" title="Click to Purchase" target="_blank">{{book.title}}</a></mat-card-title>
             <mat-card-subtitle>
               {{book.PublishDate}}
             </mat-card-subtitle>
           </mat-card-content>
 
-          <mat-card-actions align="end">
-            <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="openModal(i, book)" data-bs-target="#exampleModal">Edit</button>
-            <button mat-raised-button color="warn" title="Delete Book" (click)="deleteBook(book)">Delete</button>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" data-bs-toggle="modal" title="Edit Book Details" (click)="openAddEditModal(i, book)" data-bs-target="#addEditModal">Edit</button>
+            <button mat-raised-button color="warn" title="Delete Book" data-bs-toggle="modal" data-bs-target="#confirmModal" (click)="openConfirmModal(book)">Delete</button>
           </mat-card-actions>
     
         </mat-card>
@@ -35,11 +35,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addEditModal" tabindex="-1" aria-labelledby="addEditModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <h5 class="modal-title" id="addEditModalLabel">{{modalTitle}}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -68,5 +68,23 @@
         </div>
       </div>
     </div>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <p>Are you sure want to delete <strong>{{selectedBook?.title}}</strong> book?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteBook()">Yes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+      </div>
+    </div>
   </div>
+</div>
 

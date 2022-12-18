@@ -23,8 +23,13 @@ md-card-actions {
     border-top: 1px solid lightgrey;
 }
 
-.mat-card-actions-align-end {
+mat-card-content{
+    text-align: center;
+}
+
+.mat-card-actions {
     border-top: 1px solid grey;
+    text-align: center;
 }
 
 .sub-head {
@@ -62,4 +67,16 @@ a {
         place-items: center;
     }
 }
+
+@media only screen and (min-width: 992px) {
+    /* For Large devices (laptops/desktops, 992px and up): */
+    .mat-card-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+}
+
+
 
